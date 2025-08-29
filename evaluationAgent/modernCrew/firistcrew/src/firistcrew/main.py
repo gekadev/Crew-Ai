@@ -18,7 +18,7 @@ def run():
     Run the crew.
     """
     inputs = {
-        'topic': 'the Usage of Natural Lmague Processing to Enhance Work ',
+        'topic': 'the Usage of Natural Language  Processing to Enhance Work  In Banking Sector',
       #  'current_year': str(datetime.now().year)
     }
     
