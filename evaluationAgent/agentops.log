@@ -1,0 +1,3 @@
+2025-08-29 18:34:20,459 - INFO - Session Replay for default trace: https://app.agentops.ai/sessions?trace_id=90aa4088881f379d7c1e6c487c3669e5
+2025-08-29 18:34:53,570 - WARNING - end_session() is deprecated and will be removed in v4 in the future. Use agentops.end_trace() instead.
+2025-08-29 18:34:54,438 - INFO - Session Replay for default.session trace: https://app.agentops.ai/sessions?trace_id=90aa4088881f379d7c1e6c487c3669e5

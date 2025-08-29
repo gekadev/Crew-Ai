@@ -1,0 +1,131 @@
+
+
+# reporting_task:
+#   description: >
+#     Review the context you got and expand each topic into a full section for a report.
+#     Make sure the report is detailed and contains any and all relevant information.
+#   expected_output: >
+#     A fully fledged report with the main topics, each with a full section of information.
+#     Formatted as markdown without '```'
+#   agent: reporting_analyst
+
+
+keyWordGeneration_task:
+  description: >
+    based on given {topic} kindly follow steps below :-
+    1- start to analysis the recived {topic} 
+    2- strat to generate key word based on {topic} and  above analysis 
+    3- the key word must represent the topic 100%.
+    4- generated key word must be in english .
+
+  expected_output: >
+    A fully fledged report with the main topics, each with a full section of information.
+    Formatted as markdown without '```'
+  agent: keyWordGeneration
+
+  
+writer_task:
+  description: >
+    based on generated keyword, kindly formate the generated article into beautifle markdown doucment without '```'
+    please folow below tips : -
+      1-  stoing article header  and it must be represent the {topic} .
+      2-  article must be well-structured .
+      3-  divide articls is titles and subtitles .
+      4-  article must cover all points .
+      5-  use proper markdown headers (#,##,###).
+      6-  use bullet points inside report .
+      7-  add proper spaces and section space .
+      8-  make recommendation stand out using blockqouets .
+      9-  ensure the date is propery Formatted . 
+      10- ad table of connetent at the beginneng.
+      11- use horizontal roles (---) to separate major sections .
+      12- add inline citations for each major  claim using (auther, year ) format.
+      13- include sourec section at the end of article with numbers referenace.
+      14 - each source must include title puplisher/auther , url
+      15- link inline citations to the corresponding enntry in source section .
+      16 - article must not less than 10 pages.
+      17 - article must be in English Only 
+
+  expected_output: >
+    A fully fledged markdown report with the main topics, each with a full section of information.
+    Formatted as markdown without '```'
+  agent: writer  
+  context: [keyWordGeneration_task]
+
+
+evaluator_task:
+  description: >
+    based on generated Topic Report , kindly Review the generated articls carefully. into beautifle markdown doucment without '```'
+    please folow below tips : -
+      -  Check if the information is accurate and factually sound.  
+      -  Ensure the structure flows logically with a clear beginning, middle, and end.  
+      -  Assess clarity, coherence, and readability.  
+      -  Provide detailed feedback and suggest improvement
+      -  report must contain header   .
+      -  report must be well-structured . 
+      -  use proper markdown headers (#,##,###).
+      -  add proper spaces and section space .
+      -  ensure the date is propery Formatted . 
+      -  add table of connetent at the beginneng.
+      -  article must be in English Only
+      -  use horizontal roles (---) to separate major sections .
+      -  use bullet points inside report .
+      -  make recommendation stand out using blockqouets .
+      -  genrated output report must contain  report title  as Content Evaluation Reoport   
+      -  genrated report must contain Conclusion about content accuarcy  in one section in few lines  
+      -  creat new section  for report result and it must include   good or verygood or exellent, or bad content
+      -  the output must be have percentage of accuracy 
+      -  output must contain how to imprive accuracy  in new section named how to improve contetent
+      
+      
+  
+  expected_output: >
+    A fully fledged markdown report with the main topics, each with a full section of information.
+    A Markdown evaluation report with sections:  
+    1. Strengths  
+    2. Weaknesses  
+    3. Suggested Improvements 
+    Formatted as markdown without '```'
+  agent: evaluator  
+  context: [writer_task,]
+
+
+performance_task:
+  description: >
+    based on all generated articlas and report  , kindly Review thegenerated articlas  carefully. into beautifle markdown doucment without '```'
+    please folow below tips : -
+      - Collect the outputs from all tasks (research, reporting, keyword generation, and evaluation).  
+      - Evaluate each output’s quality, accuracy, and usefulness.
+      - Ensure the structure flows logically with a clear beginning, middle, and end.
+      - final summary report that must includes:
+      - Overview of all outputs
+      - Evaluation of each agent’s performance
+      - Key strengths and weaknesses
+      - Final conclusions and recommendations
+      - Provide detailed feedback and suggest improvement
+      - generated report must include below tips for generation :
+        -  report must contain header   .
+        -  report must be well-structured . 
+        -  use proper markdown headers (#,##,###).
+        -  add proper spaces and section space .
+        -  ensure the date is propery Formatted . 
+        -  add table of connetent at the beginneng.
+        -  article must be in English Only
+        -  use horizontal roles (---) to separate major sections .
+        -  use bullet points inside report .
+        -  make recommendation stand out using blockqouets .
+        -  genrated output report must contain  report title  as Performance Analysis Report
+
+    
+      
+      
+  
+  expected_output: >
+    A fully fledged markdown report with the main topics, each with a full section of information.
+    A Markdown evaluation report with sections:  
+    1. Strengths  
+    2. Weaknesses  
+    3. Suggested Improvements 
+    Formatted as markdown without '```'
+  agent: evaluator  
+  context: [writer_task,keyWordGeneration_task,evaluator_task]
